@@ -40,7 +40,7 @@ def _cmd_dscl(nodename='.', scope=None, query=None, user=_get_consoleuser(), pli
 def _cmd_ldapsearch(domain, fields=None):
     ldap_url = 'ldap://{0}'.format(domain)
     domain_split = domain.split('.')
-    base = 'dc={0},dc={1}'.format(domain_split[0],domain_split[1])
+    base = 'dc={0}'.format(',dc='.join(domain_split))
     cmd = ['ldapsearch', '-LLL', '-Q', '-H', ldap_url, '-b', base]
     if fields:
         if isinstance(fields, list):
